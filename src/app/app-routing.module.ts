@@ -12,14 +12,12 @@ const routes: Routes = [
     canActivate: [AuthGuard], 
     children: [
       {
-        path: '',
-        component: HomeComponent,
-        canActivate: [AuthGuard]
+        path: 'home',
+        component: HomeComponent
       },
       {
-      path: 'pointcloud',
-      component: PointCloudComponent,
-      canActivate: [AuthGuard]
+        path: 'pointcloud',
+        component: PointCloudComponent
       },
     ]
   },

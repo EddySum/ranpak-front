@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<header>
+    <nav *ngIf="authGuard.isAuthenticated" class="nav-container">
+        <div class="nav-container-inner">
+          <div>
+            <ul class="nav-list-container">
+              <li>
+                <a href="#" routerLink="/home" routerLinkActive="active">Home</a>
+              </li>
+              <li>
+                <a routerLink="/pointcloud" routerLinkActive="active">Point Cloud</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
