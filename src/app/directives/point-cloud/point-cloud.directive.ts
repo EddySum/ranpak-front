@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader';
 import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh } from 'three'
 
@@ -6,14 +6,16 @@ import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial
   selector: '[appPointCloud]'
 })
 export class PointCloudDirective {
+  @Input() pcbFile!: File;
 
   constructor(private el: ElementRef, private r2: Renderer2) { }
 
   ngOnInit(): void {
+    if(!this.pcbFile) throw Error('PointCloud Directive Required Input arrayBuffer missing')
     this.setupSceneAndLoad();
   }
 
-  setupSceneAndLoad() {
+  async setupSceneAndLoad() {
     const scene = new Scene();
     const camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
     const renderer = new WebGLRenderer();
@@ -25,30 +27,13 @@ export class PointCloudDirective {
 
     camera.position.z = 1;
 
-    loader.load(
-      // resource URL
-      '../../../assets/pcds/bun045_Structured.pcd',
-      // called when the resource is loaded
-      function ( points ) {
-        console.log('loaded')
+ 
     
-        scene.add( points );
     
-      },
-      // called when loading is in progresses
-      function ( xhr ) {
+    const buffer = await this.pcbFile.arrayBuffer();
+    const points = loader.parse(buffer, this.pcbFile.name)
+    scene.add(points);
     
-        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    
-      },
-      // called when loading has errors
-      function ( error ) {
-    
-        console.log( 'An error happened', error );
-    
-      }
-    );
-
     const animate = () => {
       requestAnimationFrame( animate );
       renderer.render( scene, camera );

@@ -6,12 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./point-cloud.component.css']
 })
 export class PointCloudComponent implements OnInit {
-
-  
+  pcbFile: File | null = null;
   constructor() { }
 
   ngOnInit(): void {
     
+  }
+
+  async uploadPcb(event: Event) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if(!fileList) throw Error('file list missing');
+
+    this.pcbFile = fileList[0];
   }
 
 }

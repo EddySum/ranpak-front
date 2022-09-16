@@ -1,1 +1,2 @@
-<div appPointCloud></div>
+<input (change)="uploadPcb($event)" type="file" name="file" id="upload-file" />
+<div *ngIf="pcbFile" appPointCloud [pcbFile]="pcbFile"></div>
