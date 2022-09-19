@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "ranpak"
+  "cli": {
+    "analytics": false
+  }
 }
