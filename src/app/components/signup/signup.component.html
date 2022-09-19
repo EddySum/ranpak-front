@@ -1,27 +1,30 @@
-<div class="h-full flex flex-col sm:justify-center items-center ">
+
+<div class="h-full flex flex-col sm:justify-center items-center">
     <div class="p-6 sm:border sm:shadow-md rounded-lg w-full sm:w-144 ">
-        <div class="flex flex-col">
-            <div class="pb-6">
-                <h5 class="font-semibold text-gray-900">Create an Account</h5>
-                <p class="text-sm text-gray-500 pt-2.5">Already have an account? <span class="underline text-blue-500"><a routerLink="/login">Sign In</a></span></p>
-            </div>
-
-
-            <div>
-                <div class="input-wrap pb-4">
-                    <label>Email</label>
-                    <input type="text" id="email" placeholder="Enter Email">
+        <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <div class="flex flex-col">
+                <div class="pb-6">
+                    <h5 class="font-semibold text-gray-900">Create an Account</h5>
+                    <p class="text-sm text-gray-500 pt-2.5">Already have an account? <span class="underline text-blue-500"><a routerLink="/login">Sign In</a></span></p>
                 </div>
 
-                <div class="input-wrap">
-                    <label>Password</label>
-                    <input type="text" id="email" placeholder="Enter Password">
+
+                <div>
+                    <div class="input-wrap pb-4">
+                        <label >Email</label>
+                        <input type="text" id="email" placeholder="Enter Email" formControlName="email">
+                    </div>
+
+                    <div class="input-wrap">
+                        <label>Password</label>
+                        <input type="password" id="email" placeholder="Enter Password" formControlName="password">
+                    </div>
+                </div>
+
+                <div class="w-full self-center pt-8">
+                    <button type="submit" class="blue-btn w-full">Sign Up</button>
                 </div>
             </div>
-
-            <div class="w-full self-center pt-8">
-                <button type="button" class="blue-btn w-full">Sign Up</button>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
