@@ -2,7 +2,11 @@
 module.exports = {
   content: [ "../ranpak/src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        144: '36rem'
+      }
+    },
   },
   plugins: [],
 }

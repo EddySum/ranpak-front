@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PointCloudComponent } from './components/point-cloud/point-cloud.component';
 import { PointCloudDirective } from './directives/point-cloud/point-cloud.directive';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PointCloudDirective } from './directives/point-cloud/point-cloud.direct
     HomeComponent,
     LoginComponent,
     PointCloudComponent,
-    PointCloudDirective
+    PointCloudDirective,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

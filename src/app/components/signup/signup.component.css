@@ -1,0 +1,8 @@
+.input-wrap {
+    @apply flex flex-col gap-1.5
+}
+
+.input-wrap label {
+    @apply font-medium text-gray-700 text-sm
+}
+

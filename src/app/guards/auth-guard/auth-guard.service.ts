@@ -6,7 +6,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 })
 export class AuthGuard implements CanActivate {
 
-  isAuthenticated = true;
+  isAuthenticated = false;
 
   constructor(private router: Router) { }
   

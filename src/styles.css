@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    height: 100vh;
+    background: #FFF;
+}
+
+@layer components {
+    .input {
+        @apply bg-gray-50 border border-gray-300 rounded-lg outline-none
+        text-gray-900 text-sm  
+        focus:ring-blue-500 focus:border-blue-500
+        block w-full p-2.5;
+    }
+
+    .blue-btn {
+        @apply bg-blue-500 hover:bg-blue-700 font-medium text-white py-2 px-4 rounded-lg
+    }
+}
+
+input[type=text] {
+    @apply input
+}
