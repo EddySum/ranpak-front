@@ -12,17 +12,22 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   register(email: string, password: string): Observable<Object> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      }),
-      withCredentials: true,
-    };
-
+    
     return this.http.post(`${this.apiUrl}/register`, { 
       email: email,
       password: password
-    },
-    httpOptions);
+    });
+  }
+
+  login(email: string, password: string): Observable<Object> {
+    return this.http.post(`${this.apiUrl}/login`, { 
+      email: email,
+      password: password
+    }, { withCredentials: true });
+  }
+
+
+  getUser() {
+    return this.http.get(`${this.apiUrl}`, { withCredentials: true });
   }
 }

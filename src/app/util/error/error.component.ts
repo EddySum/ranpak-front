@@ -16,7 +16,8 @@ export class ErrorComponent implements OnInit, OnChanges {
     'required'  : (params: any)  => `This field is required`,
     'maxlength' : (params: any)  => `Maximum ${params.requiredLength} characters`,
     'minlength' : (params: any)  => `Minimum ${params.requiredLength} characters`,
-    'password': (params: any)  => `Please ensure the password matches the following rules: \n \t * A special character must be included: (*@%$) \n\t * At least one capital letter \n\t * At least one number \n\t * Minimum 8 characters`
+    'password': (params: any)  => `Please ensure the password matches the following rules: \n \t * A special character must be included: (*@%$) \n\t * At least one capital letter \n\t * At least one number \n\t * Minimum 8 characters`,
+    'email': (params: any)  => `Please enter a valid email`
   }
 
   constructor() { }

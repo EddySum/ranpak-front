@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,13 +11,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SignupComponent implements OnInit {
   signupForm = this.fb.group({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, this.validatePassword]]
   })
 
   formSubmitted = false;
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  accountCreated: boolean = false
+
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +30,10 @@ export class SignupComponent implements OnInit {
     if(this.signupForm.invalid) { return };
 
     const {email, password} = this.signupForm.value
-    this.userService.register(email as string, password as string).subscribe(); // Safe assertion as the fields are required in formgroup
+    this.userService.register(email as string, password as string).pipe(take(1)).subscribe(responseData => {
+      this.accountCreated = true;
+      //this.router.navigate(['login']);
+    }); 
   }
 
   get emailControl() {

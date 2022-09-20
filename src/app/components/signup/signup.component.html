@@ -1,33 +1,40 @@
 
 <div class="h-full flex flex-col sm:justify-center items-center">
     <div class="p-6 sm:border sm:shadow-md rounded-lg w-full sm:w-144 ">
-        <form [formGroup]="signupForm" (ngSubmit)="signUp()">
-            <div class="flex flex-col">
-                <div class="pb-6">
-                    <h5 class="font-semibold text-gray-900">Create an Account</h5>
-                    <p class="text-sm text-gray-500 pt-2.5">Already have an account? <span class="underline text-blue-500"><a routerLink="/login">Sign In</a></span></p>
-                </div>
-
-
-                <div>
-                    <div class="input-wrap pb-4">
-                        <label >Email</label>
-                        <input type="text" id="email" placeholder="Enter Email" formControlName="email">
-                        <app-error *ngIf="formSubmitted" [errors]="emailControl?.errors"></app-error>
+        <ng-container *ngIf="!accountCreated; else accountCreatedTemplate;">
+            <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+                <div class="flex flex-col">
+                    <div class="pb-6">
+                        <h5 class="font-semibold text-gray-900">Create an Account</h5>
+                        <p class="text-sm text-gray-500 pt-2.5">Already have an account? <span class="underline text-blue-500"><a routerLink="/login">Login</a></span></p>
                     </div>
-                    
 
-                    <div class="input-wrap">
-                        <label>Password</label>
-                        <input type="password" id="email" placeholder="Enter Password" formControlName="password">
-                        <app-error *ngIf="formSubmitted" [errors]="passwordControl?.errors"></app-error>
+
+                    <div>
+                        <div class="input-wrap pb-4">
+                            <label >Email</label>
+                            <input type="text" id="email" placeholder="Enter Email" formControlName="email">
+                            <app-error *ngIf="formSubmitted" [errors]="emailControl?.errors"></app-error>
+                        </div>
+                        
+
+                        <div class="input-wrap">
+                            <label>Password</label>
+                            <input type="password" id="email" placeholder="Enter Password" formControlName="password">
+                            <app-error *ngIf="formSubmitted" [errors]="passwordControl?.errors"></app-error>
+                        </div>
+                    </div>
+
+                    <div class="w-full self-center pt-8">
+                        <button type="submit" class="blue-btn w-full">Sign Up</button>
                     </div>
                 </div>
-
-                <div class="w-full self-center pt-8">
-                    <button type="submit" class="blue-btn w-full">Sign Up</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </ng-container>
+        <ng-template #accountCreatedTemplate>
+            <h5 class="font-semibold text-gray-900">Welcome! </h5>
+            <h6 class="font-medium text-sm text-gray-700 pt-1">Account has been created</h6>
+            <p class="text-sm text-gray-500 pt-2.5">Click here to <span class="underline text-blue-500"><a routerLink="/login">login</a></span></p>
+        </ng-template>
     </div>
 </div>
