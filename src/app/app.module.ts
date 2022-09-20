@@ -10,6 +10,7 @@ import { PointCloudComponent } from './components/point-cloud/point-cloud.compon
 import { PointCloudDirective } from './directives/point-cloud/point-cloud.directive';
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './util/error/error.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     PointCloudComponent,
     PointCloudDirective,
-    SignupComponent
+    SignupComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

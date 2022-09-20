@@ -13,11 +13,14 @@
                     <div class="input-wrap pb-4">
                         <label >Email</label>
                         <input type="text" id="email" placeholder="Enter Email" formControlName="email">
+                        <app-error *ngIf="formSubmitted" [errors]="emailControl?.errors"></app-error>
                     </div>
+                    
 
                     <div class="input-wrap">
                         <label>Password</label>
                         <input type="password" id="email" placeholder="Enter Password" formControlName="password">
+                        <app-error *ngIf="formSubmitted" [errors]="passwordControl?.errors"></app-error>
                     </div>
                 </div>
 
