@@ -1,5 +1,5 @@
 <header>
-    <nav *ngIf="authGuard.isAuthenticated" class="nav-container">
+    <nav *ngIf="!isLoginOrSignup" class="nav-container">
         <div class="nav-container-inner">
           <div>
             <ul class="nav-list-container">

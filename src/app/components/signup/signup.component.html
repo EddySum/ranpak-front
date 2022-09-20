@@ -27,6 +27,7 @@
 
                     <div class="w-full self-center pt-8">
                         <button type="submit" class="blue-btn w-full">Sign Up</button>
+                        <p class="error-text pt-0.5" *ngIf="api422Msg">* {{api422Msg}}</p>
                     </div>
                 </div>
             </form>
