@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { FeatherModule } from 'angular-feather';
-import { Edit2, Trash2, Plus, PlusCircle, Upload, Image, FilePlus, ArrowLeft } from 'angular-feather/icons';
+import { Edit2, Trash2, Plus, PlusCircle, Upload, Image, FilePlus, ArrowLeft, File } from 'angular-feather/icons';
 
 const icons = {
   Edit2,
@@ -11,7 +11,8 @@ const icons = {
   Upload,
   Image,
   FilePlus,
-  ArrowLeft
+  ArrowLeft,
+  File
 };
 
 @NgModule({

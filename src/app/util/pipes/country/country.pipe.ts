@@ -7,9 +7,6 @@ import { countryList } from '../../country-data';
   name: 'country'
 })
 export class CountryPipe implements PipeTransform {
-  constructor(private countryService: CountryService) {
-       
-  }
 
   transform(countryCode: string): string {
     return countryList.find((country: Country) => country.code === countryCode)?.name ?? countryCode
