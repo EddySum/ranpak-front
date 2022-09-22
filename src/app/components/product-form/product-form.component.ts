@@ -23,6 +23,9 @@ export class ProductFormComponent implements OnInit {
       referenceNumber: [`${product.referenceNumber}` ?? ''],
       country: [product.country ?? ''],
     })
+
+    this.previousFileName = product.file?.name;
+    this.previousImageName = product.image?.name
   };
 
   
@@ -37,6 +40,9 @@ export class ProductFormComponent implements OnInit {
 
   file: File | null = null;
   imageFile: File | null = null;
+
+  previousFileName?: string | null = null; // These fields are used to display the existing names when editing a product
+  previousImageName?: string | null = null;
 
   countries$: Observable<Country[]> | null = null;
 
@@ -58,6 +64,8 @@ export class ProductFormComponent implements OnInit {
     if(!fileList) throw Error('file list missing');
 
     this.file = fileList[0];
+
+    this.previousFileName = null;
   }
 
   uploadImage(event: Event) {
@@ -66,10 +74,20 @@ export class ProductFormComponent implements OnInit {
     if(!fileList) throw Error('file list missing');
 
     this.imageFile = fileList[0];
+
+    this.previousImageName = null;
   }
 
   getCountries() {
     this.countries$ = this.countryService.getCountries()
+  }
+
+  get displayFileName(){
+    return this.file ? this.file?.name : this.previousFileName
+  }
+
+  get displayImageName() {
+    return this.imageFile ? this.imageFile?.name : this.previousImageName
   }
 
 }

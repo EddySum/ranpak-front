@@ -50,7 +50,6 @@ export class HomeComponent implements OnInit {
   editOrAddProduct() {
     if(this.editingProduct) {
       this.submitProductEdits();
-      this.editingProduct = null;
     } else {
       this.createProduct()
     }
@@ -74,7 +73,7 @@ export class HomeComponent implements OnInit {
           newProductList[idx] = editedProduct;
           this.productSubject.next(newProductList);
 
-          this.view = 'list';
+          this.switchToListView();
         }
       });
   }
@@ -97,6 +96,11 @@ export class HomeComponent implements OnInit {
           this.view = 'list';
         }
       });
+  }
+
+  switchToListView() {
+    this.editingProduct = null;
+    this.view = 'list';
   }
 
   

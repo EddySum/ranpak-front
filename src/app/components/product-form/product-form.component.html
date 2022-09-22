@@ -41,10 +41,10 @@
                         
                         <div class="flex flex-row items-center gap-2">
                             <i-feather name="image" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
-                            <p class="font-medium">{{imageFile?.name ?? 'Product Image'}}</p>
+                            <p class="font-medium">{{displayImageName ?? 'Product Image'}}</p>
                         </div>
 
-                        <div *ngIf="!imageFile" class="flex flex-row items-center gap-2 pt-4">
+                        <div *ngIf="!displayImageName" class="flex flex-row items-center gap-2 pt-4">
                             <i-feather name="upload" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
                             <p class="text-sm "><span class="font-medium">Click to upload </span> or drag and drop</p>
                         </div>
@@ -62,10 +62,10 @@
                         
                         <div class="flex flex-row items-center gap-2">
                             <i-feather name="file-plus" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
-                            <p class="font-medium">{{file?.name ?? 'File'}}</p>
+                            <p class="font-medium">{{displayFileName ?? 'File'}}</p>
                         </div>
 
-                        <div *ngIf="!file" class="flex flex-row items-center gap-2 pt-4">
+                        <div *ngIf="!displayFileName" class="flex flex-row items-center gap-2 pt-4">
                             <i-feather name="upload" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
                             <p class="text-sm "><span class="font-medium">Click to upload </span> or drag and drop</p>
                         </div>

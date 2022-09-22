@@ -1,9 +1,18 @@
 <div class="px-8 py-8">
     <ng-container *ngIf="!pcbFile">
         <div class="flex justify-center items-center">
-            <label for="upload-file" class="flex flex-col justify-center items-center w-full h-64 bg-blue-100 rounded-lg border-2 border-blue-500 border-dashed cursor-pointer hover:bg-blue-200">
-                <div class="flex flex-col justify-center items-center">
-                    <p class="text-sm text-gray-800"><span class="font-medium">Click to upload</span> or drag and drop</p>
+            <label for="upload-file" class="group flex flex-col justify-center items-center w-full h-48 bg-gray-50 rounded-lg border-2 border-blue-200 hover:border-white hover:border-dashed text-gray-900 hover:!text-white cursor-pointer hover:bg-blue-400">
+                <div class="flex flex-col justify-center items-center gap-2 ">
+
+                    <div class="flex flex-row items-center gap-2">
+                        <i-feather name="file-plus" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
+                        <p class="font-medium">{{'Point Cloud File'}}</p>
+                    </div>
+                    
+                    <div class="flex flex-row items-center gap-2 pt-4">
+                        <i-feather name="upload" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
+                        <p class="text-sm "><span class="font-medium">Click to upload </span> or drag and drop</p>
+                    </div>
                 </div>
                 
             </label>
