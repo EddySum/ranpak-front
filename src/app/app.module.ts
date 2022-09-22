@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './util/error/error.component';
 import { IconsModule } from './icons/icons.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     PointCloudDirective,
     SignupComponent,
     ErrorComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

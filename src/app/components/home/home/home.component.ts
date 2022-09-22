@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatestWith, Observable, pipe, take } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product-service/product.service';
+import { ProductFormComponent } from '../../product-form/product-form.component';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,10 @@ import { ProductService } from 'src/app/services/product-service/product.service
 export class HomeComponent implements OnInit {
   productSubject = new BehaviorSubject<Product[]>([]);
   products$: Observable<Product[]> = this.productSubject.asObservable();
+
+  view: 'add-form' | 'list' = 'list';
+
+  @ViewChild(ProductFormComponent) productFormComp: ProductFormComponent | null = null;
 
   constructor(private productService: ProductService) { }
 
@@ -27,6 +32,30 @@ export class HomeComponent implements OnInit {
         next: ([deleteResp, products]) => {
           const newProductsArr = products.filter(prod => prod._id !== product._id);
           this.productSubject.next(newProductsArr)
+        }
+      });
+  }
+
+  openProductForm() {
+    this.view = 'add-form';
+  }
+
+  createProduct() {
+    const productForm = this.productFormComp?.productForm.value;
+
+    const product = {
+      ...productForm
+    }
+
+    this.productService.postProduct(product, this.productFormComp?.file, this.productFormComp?.imageFile).pipe(
+      combineLatestWith(this.products$),
+      take(1)).subscribe({
+        next: ([newProduct, products]) => {
+          const newProductsArr = [...products];
+          newProductsArr.push(newProduct);
+          this.productSubject.next(newProductsArr);
+
+          this.view = 'list';
         }
       });
   }

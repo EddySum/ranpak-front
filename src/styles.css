@@ -33,7 +33,9 @@ body {
 }
 
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=number],
+textarea {
     @apply input
 }
 

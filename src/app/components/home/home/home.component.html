@@ -1,3 +1,20 @@
-<div class="list-container p-4 sm:p-8 flex flex-row justify-center flex-wrap gap-2 md:justify-start">
-    <app-product-card *ngFor="let product of products$ | async" [product]="product" (deleteProduct)="deleteProduct(product)"></app-product-card>
+
+<div class="p-4 sm:p-8">
+    <ng-container *ngIf="view === 'list' else addFormRef">
+        <div class="pb-4">
+            <button (click)="openProductForm()" class="blue-btn flex flex-row items-center gap-2">
+                <i-feather name="plus-circle" class="w-4 h-4 stroke-gray-700 cursor-pointer"></i-feather>
+                <span>New Product</span>
+            </button>
+        </div>
+        <div class="list-container flex flex-row justify-center flex-wrap gap-2 md:justify-start">
+            <app-product-card *ngFor="let product of products$ | async" [product]="product" (deleteProduct)="deleteProduct(product)"></app-product-card>
+        </div>
+    </ng-container>
 </div>
+
+
+
+<ng-template #addFormRef>
+    <app-product-form (submitProduct)="createProduct()"></app-product-form>
+</ng-template>

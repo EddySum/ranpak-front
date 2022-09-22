@@ -1,0 +1,77 @@
+<form class="max-w-2xl flex flex-col gap-4" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="input-wrap">
+        <label>Name</label>
+        <input type="text" id="product-name" placeholder="Enter Product Name" formControlName="name">
+    </div>
+
+    <div class="input-wrap">
+        <label>Info</label>
+        <textarea class="resize-none h-16" type="text" id="product-info" placeholder="Enter Product Info" formControlName="info"></textarea>
+    </div>
+
+    <div class="grid grid-cols-2 gap-2 md:gap-4">
+        <div class="input-wrap">
+            <label>Product Id</label>
+            <input type="text" id="product-id" placeholder="Enter Product Id" formControlName="productId">
+        </div>
+
+        <div class="input-wrap">
+            <label>Reference Number</label>
+            <input type="number" id="ref-number" placeholder="Enter Reference Number" formControlName="referenceNumber">
+        </div>
+    </div>
+
+    <div class="flex flex-row items-center">
+        <div class="input-wrap">
+            <label>Country</label>
+            <input type="text" id="country" placeholder="Enter Country" formControlName="country">
+        </div>
+    </div>
+
+
+    <div class="w-full flex flex-row gap-x-2 grid grid-cols-1 sm:grid-cols-2">
+        <div class="">
+            <div class="flex justify-center items-center">
+                <label for="upload-pic" class="group flex flex-col justify-center items-center w-full h-48 bg-gray-50 rounded-lg border-2 border-blue-200 hover:border-white hover:border-dashed text-gray-900 hover:!text-white cursor-pointer hover:bg-blue-400">
+                    <div class="flex flex-col justify-center items-center gap-2 ">
+                        
+                        <div class="flex flex-row items-center gap-2">
+                            <i-feather name="image" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
+                            <p class="font-medium">{{imageFile?.name ?? 'Product Image'}}</p>
+                        </div>
+
+                        <div *ngIf="!imageFile" class="flex flex-row items-center gap-2 pt-4">
+                            <i-feather name="upload" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
+                            <p class="text-sm "><span class="font-medium">Click to upload </span> or drag and drop</p>
+                        </div>
+                    </div>
+                    
+                </label>
+            </div>
+            <input class="invisible" (change)="uploadImage($event)" type="file" name="file" id="upload-pic"/>
+        </div>
+
+        <div class="">
+            <div class="flex justify-center items-center">
+                <label for="upload-file" class="group flex flex-col justify-center items-center w-full h-48 bg-gray-50 rounded-lg border-2 border-blue-200 hover:border-white hover:border-dashed text-gray-900 hover:!text-white cursor-pointer hover:bg-blue-400">
+                    <div class="flex flex-col justify-center items-center gap-2 ">
+                        
+                        <div class="flex flex-row items-center gap-2">
+                            <i-feather name="file-plus" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
+                            <p class="font-medium">{{file?.name ?? 'File'}}</p>
+                        </div>
+
+                        <div *ngIf="!file" class="flex flex-row items-center gap-2 pt-4">
+                            <i-feather name="upload" class="!stroke-gray-700 group-hover:!stroke-white"></i-feather>
+                            <p class="text-sm "><span class="font-medium">Click to upload </span> or drag and drop</p>
+                        </div>
+                    </div>
+                    
+                </label>
+            </div>
+            <input class="invisible"  (change)="uploadFile($event)" type="file" name="file" id="upload-file"/>
+        </div>
+    </div>
+
+    <button type="submit" class="blue-btn w-32 mx-auto sm:mr-0 sm:ml-auto">Submit</button>
+</form>
