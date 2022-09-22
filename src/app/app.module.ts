@@ -11,6 +11,8 @@ import { PointCloudDirective } from './directives/point-cloud/point-cloud.direct
 import { SignupComponent } from './components/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './util/error/error.component';
+import { IconsModule } from './icons/icons.module';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { ErrorComponent } from './util/error/error.component';
     PointCloudComponent,
     PointCloudDirective,
     SignupComponent,
-    ErrorComponent
+    ErrorComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    IconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

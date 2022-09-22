@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, combineLatestWith, Observable, pipe, take } from 'rxjs';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/services/product-service/product.service';
 
 @Component({
   selector: 'app-home',
@@ -6,20 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  product = {
-    "userId": "632949fe95a74e7fa7b79dff",
-    "productId": "123456789",
-    "name": "PS5",
-    "info": "This a test product. To learn more, ask for more. Yes, this is used for gaming",
-    "referenceNumber": 123,
-    "country": "USA",
-    "_id": "632b376cf38ed2be94031bae",
-    "createdAt": "2022-09-21T16:10:20.994Z"
-  }
+  productSubject = new BehaviorSubject<Product[]>([]);
+  products$: Observable<Product[]> = this.productSubject.asObservable();
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.productService.getProducts().pipe(take(1)).subscribe({
+      next: (products) => this.productSubject.next(products)
+    });
   }
+
+  deleteProduct(product: Product) {
+    this.productService.deleteProduct(product._id).pipe(
+      combineLatestWith(this.products$),
+      take(1)).subscribe({
+        next: ([deleteResp, products]) => {
+          const newProductsArr = products.filter(prod => prod._id !== product._id);
+          this.productSubject.next(newProductsArr)
+        }
+      });
+  }
+
+  
 
 }

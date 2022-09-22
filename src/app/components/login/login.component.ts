@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError, of, take, throwError } from 'rxjs';
 import { AuthGuard } from 'src/app/guards/auth-guard/auth-guard.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-login',
