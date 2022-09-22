@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   view: 'add-form' | 'list' = 'list';
 
+  editingProduct: Product | null = null;
+
   @ViewChild(ProductFormComponent) productFormComp: ProductFormComponent | null = null;
 
   constructor(private productService: ProductService) { }
@@ -38,6 +40,43 @@ export class HomeComponent implements OnInit {
 
   openProductForm() {
     this.view = 'add-form';
+  }
+
+  openProductEdit(product: Product) {
+    this.editingProduct = product
+    this.view = 'add-form';
+  }
+
+  editOrAddProduct() {
+    if(this.editingProduct) {
+      this.submitProductEdits();
+      this.editingProduct = null;
+    } else {
+      this.createProduct()
+    }
+  }
+
+  submitProductEdits() {
+    const productForm = this.productFormComp?.productForm.value;
+
+    const product = {
+      ...this.editingProduct,
+      ...productForm
+    }
+
+    this.productService.editProduct(product, this.productFormComp?.file, this.productFormComp?.imageFile).pipe(
+      combineLatestWith(this.products$),
+      take(1)).subscribe({
+        next: ([editedProduct, products]) => {
+          const newProductList = [...products];
+          const idx = newProductList.findIndex(product => editedProduct._id === product._id);
+
+          newProductList[idx] = editedProduct;
+          this.productSubject.next(newProductList);
+
+          this.view = 'list';
+        }
+      });
   }
 
   createProduct() {

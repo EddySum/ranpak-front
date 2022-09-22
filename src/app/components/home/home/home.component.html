@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="list-container flex flex-row justify-center flex-wrap gap-2 md:justify-start">
-            <app-product-card *ngFor="let product of products$ | async" [product]="product" (deleteProduct)="deleteProduct(product)"></app-product-card>
+            <app-product-card *ngFor="let product of products$ | async" [product]="product" (deleteProduct)="deleteProduct(product)" (editProduct)="openProductEdit(product)"></app-product-card>
         </div>
     </ng-container>
 </div>
@@ -20,5 +20,5 @@
         <i-feather name="arrow-left" class="w-4 h-4 stroke-gray-400 cursor-pointer"></i-feather>
         <p class="font-medium text-gray-800">Back to Product List</p>
     </div>
-    <app-product-form (submitProduct)="createProduct()"></app-product-form>
+    <app-product-form [product]="editingProduct" (submitProduct)="editOrAddProduct()"></app-product-form>
 </ng-template>

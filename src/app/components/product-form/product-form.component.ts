@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Country } from 'src/app/models/country';
+import { Product } from 'src/app/models/product';
 import { CountryService } from 'src/app/services/country/country.service';
 import { ProductService } from 'src/app/services/product-service/product.service';
 
@@ -11,6 +12,21 @@ import { ProductService } from 'src/app/services/product-service/product.service
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit {
+  @Input('product') set product(product: Product | undefined | null) {
+    if(!product) return;
+ 
+    // This input property is only when editing an exisiting product
+    this.productForm = this.fb.group({
+      name: [product.name, [Validators.required]],
+      productId: [product.productId, Validators.required],
+      info: [product.info ?? ''],
+      referenceNumber: [`${product.referenceNumber}` ?? ''],
+      country: [product.country ?? ''],
+    })
+  };
+
+  
+
   productForm = this.fb.group({
     name: ['', [Validators.required]],
     productId: ['', Validators.required],

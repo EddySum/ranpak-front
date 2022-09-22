@@ -23,6 +23,16 @@ export class ProductService {
     return this.http.post<Product>(`${this.apiUrl}`, formParams, { withCredentials: true });
   }
 
+  editProduct(product: any, file?: File | null, image?: File | null): Observable<Product> {
+    let formParams = new FormData();
+    if(file) formParams.append('file', file, file.name)
+    if(image) formParams.append('image', image, image.name)
+
+    formParams.append('data', JSON.stringify(product));
+
+    return this.http.patch<Product>(`${this.apiUrl}/${product._id}`, formParams, { withCredentials: true });
+  }
+
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}`, { withCredentials: true });
   }
