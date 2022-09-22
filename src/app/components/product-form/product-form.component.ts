@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Country } from 'src/app/models/country';
+import { CountryService } from 'src/app/services/country/country.service';
 import { ProductService } from 'src/app/services/product-service/product.service';
 
 @Component({
@@ -19,11 +22,14 @@ export class ProductFormComponent implements OnInit {
   file: File | null = null;
   imageFile: File | null = null;
 
+  countries$: Observable<Country[]> | null = null;
+
   @Output() submitProduct = new EventEmitter<void>()
 
-  constructor(private fb: FormBuilder, private productService: ProductService) { }
+  constructor(private fb: FormBuilder, private countryService: CountryService) { }
 
   ngOnInit(): void {
+    this.getCountries();
   }
 
   onSubmit() {
@@ -44,6 +50,10 @@ export class ProductFormComponent implements OnInit {
     if(!fileList) throw Error('file list missing');
 
     this.imageFile = fileList[0];
+  }
+
+  getCountries() {
+    this.countries$ = this.countryService.getCountries()
   }
 
 }

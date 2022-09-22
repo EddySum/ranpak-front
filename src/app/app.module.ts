@@ -14,6 +14,7 @@ import { ErrorComponent } from './util/error/error.component';
 import { IconsModule } from './icons/icons.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { CountryPipe } from './util/pipes/country/country.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     SignupComponent,
     ErrorComponent,
     ProductCardComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    CountryPipe
   ],
   imports: [
     BrowserModule,
