@@ -1,3 +1,7 @@
 .slider {
     @apply h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer;
 }
+
+.viewer-height {
+    height: 432px
+}

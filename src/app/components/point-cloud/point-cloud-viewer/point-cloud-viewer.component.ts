@@ -14,6 +14,11 @@ export class PointCloudViewerComponent implements OnInit {
   selectedColor = ''
 
   pointSize: number | null = null;
+  fov: number | null = 75
+  cameraZ: number | null = null;
+  cameraY: number | null = null;
+  near: number | null = 0.1;
+  far: number | null = 1000;
 
   constructor() { }
 
@@ -23,8 +28,8 @@ export class PointCloudViewerComponent implements OnInit {
 
   initIroColorPicker() {
     this.colorPicker = iro.ColorPicker('#picker', {
-      width: 432,
-      boxHeight: 238,
+      width: 350,
+      boxHeight: 252,
       margin: 24,
       sliderSize: 12,
       layout: [

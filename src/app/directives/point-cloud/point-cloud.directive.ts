@@ -9,6 +9,11 @@ export class PointCloudDirective {
   @Input() pcbFile!: File;
   @Input() color?: string;
   @Input() pointSize?: number | null;
+  @Input() fov?: number | null;
+  @Input() cameraZ?: number | null;
+  @Input() cameraY?: number | null;
+  @Input() near?: number | null;
+  @Input() far?: number | null;
 
   @Output() pointSizeChange = new EventEmitter<number>();
 
@@ -26,7 +31,7 @@ export class PointCloudDirective {
     const height = this.el.nativeElement.clientHeight;
 
     const scene = new Scene();
-    const camera = new PerspectiveCamera( 75, width / height, 0.1, 1000 );
+    
     const renderer = new WebGLRenderer();
     renderer.setSize( width, height );
 
@@ -34,7 +39,7 @@ export class PointCloudDirective {
 
     const loader = new PCDLoader();
 
-    camera.position.z = 1;
+    
 
  
     
@@ -48,7 +53,12 @@ export class PointCloudDirective {
     scene.add(this.pcdPoints);
     
     const animate = () => {
+      const width = this.el.nativeElement.clientWidth;
+      const height = this.el.nativeElement.clientHeight;
+      renderer.setSize( width, height );
+      
       this.setParams();
+      const camera = this.createCamera();
       requestAnimationFrame( animate );
       renderer.render( scene, camera );
     }
@@ -65,10 +75,19 @@ export class PointCloudDirective {
     material.setValues({
       size: this.pointSize ?? material.size,
       color: color
-    })
-    console.log(material.size)
-    /* material.parmaters()
-    material.color.set(color) */
+    });
+  }
+
+  createCamera() {
+    const width = this.el.nativeElement.clientWidth;
+    const height = this.el.nativeElement.clientHeight;
+    const camera = new PerspectiveCamera( this.fov ?? 75, width / height, this.near ?? 0.1, this.far ?? 1000 );
+    camera.position.z = this.cameraZ ?? 1;
+    camera.position.y = this.cameraY ?? 0;
+
+    console.log(this.near, this.far);
+
+    return camera;
   }
 
 }

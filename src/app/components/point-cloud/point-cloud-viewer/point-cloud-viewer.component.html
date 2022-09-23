@@ -1,9 +1,42 @@
-<div class="w-full h-64" appPointCloud [pcbFile]="pcbFile" [(pointSize)]="pointSize" [color]="selectedColor"></div>
 
-<div class="flex flex-row gap-8 pt-10">
-    <div id="picker"></div>
-    <div class="input-wrap">
-        <label for="point-size" class="block font-medium text-gray-700 text-sm">Point Size:</label>
-        <input [(ngModel)]="pointSize" id="point-size" type="range" min="0" max="1" value="1" step="0.0025" class="w-96 slider">
+<div class="max-w-4xl w-80 mx-auto md:mx-0 md:w-auto">
+    <div class="w-full h-64 " appPointCloud [pcbFile]="pcbFile" 
+        [(pointSize)]="pointSize" 
+        [color]="selectedColor" 
+        [fov]="fov" 
+        [cameraZ]="cameraZ" 
+        [cameraY]="cameraY"
+        [near]="near"
+        [far]="far" ></div>
+
+    <div class="flex flex-col md:flex-row justify-center md:justify-evenly gap-8  pt-10 items-center">
+        <div id="picker"></div>
+        <div class="flex flex-col gap-2  w-80">
+            <div class="input-wrap">
+                <label for="point-size" class="block font-medium text-gray-700 text-sm">Point Size:</label>
+                <input [(ngModel)]="pointSize" id="point-size" type="range" min="0" max="1" value="1" step="0.0025" class="w-full slider">
+            </div>
+            <div class="input-wrap">
+                <label for="fov" class="block font-medium text-gray-700 text-sm">Field of View:</label>
+                <input [(ngModel)]="fov" id="fov" type="range" min="0" max="180" value="75" step="1" class="w-full slider">
+            </div>
+
+            <div class="input-wrap">
+                <label for="cameraZ" class="block font-medium text-gray-700 text-sm">Camera Z Position:</label>
+                <input [(ngModel)]="cameraZ" id="cameraZ" type="range" min="0" max="5" value="1" step="0.2" class="w-full slider">
+            </div>
+            <div class="input-wrap">
+                <label for="cameraY" class="block font-medium text-gray-700 text-sm">Camera Y Position:</label>
+                <input [(ngModel)]="cameraY" id="cameraY" type="range" min="0" max="5" value="1" step="0.2" class="w-full slider">
+            </div>
+            <div class="input-wrap">
+                <label for="near" class="block font-medium text-gray-700 text-sm">Near:</label>
+                <input [(ngModel)]="near" id="near" type="range" min="0" max="100" value="0.1" step="0.1" class="w-full slider">
+            </div>
+            <div class="input-wrap">
+                <label for="far" class="block font-medium text-gray-700 text-sm">Far:</label>
+                <input [(ngModel)]="far" id="far" type="range" min="900" max="1000" value="1000" step="0.1" class="w-full slider">
+            </div>
+        </div>
     </div>
 </div>
