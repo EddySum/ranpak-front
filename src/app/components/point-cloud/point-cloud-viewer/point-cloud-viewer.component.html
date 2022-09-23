@@ -1,2 +1,9 @@
-<div class="w-full h-64" appPointCloud [pcbFile]="pcbFile" [color]="selectedColor"></div>
-<div id="picker" class="pt-10"></div>
+<div class="w-full h-64" appPointCloud [pcbFile]="pcbFile" [(pointSize)]="pointSize" [color]="selectedColor"></div>
+
+<div class="flex flex-row gap-8 pt-10">
+    <div id="picker"></div>
+    <div class="input-wrap">
+        <label for="point-size" class="block font-medium text-gray-700 text-sm">Point Size:</label>
+        <input [(ngModel)]="pointSize" id="point-size" type="range" min="0" max="1" value="1" step="0.0025" class="w-96 slider">
+    </div>
+</div>

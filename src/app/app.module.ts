@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PointCloudComponent } from './components/point-cloud/point-cloud.component';
 import { PointCloudDirective } from './directives/point-cloud/point-cloud.directive';
 import { SignupComponent } from './components/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './util/error/error.component';
 import { IconsModule } from './icons/icons.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -36,7 +36,8 @@ import { PointCloudViewerComponent } from './components/point-cloud/point-cloud-
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    IconsModule
+    IconsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

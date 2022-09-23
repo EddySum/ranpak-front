@@ -13,6 +13,8 @@ export class PointCloudViewerComponent implements OnInit {
 
   selectedColor = ''
 
+  pointSize: number | null = null;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -21,8 +23,23 @@ export class PointCloudViewerComponent implements OnInit {
 
   initIroColorPicker() {
     this.colorPicker = iro.ColorPicker('#picker', {
-      // Set the size of the color picker
-      width: 320,
+      width: 432,
+      boxHeight: 238,
+      margin: 24,
+      sliderSize: 12,
+      layout: [
+        {  
+          component: iro.ui.Box,
+          options: {}
+        },
+        { 
+          component: iro.ui.Slider,
+          options: {
+            // can also be 'saturation', 'value', 'red', 'green', 'blue', 'alpha' or 'kelvin'
+            sliderType: 'hue'
+          }
+        }
+      ],
       // Set the initial color to pure red
       color: "#fff"
     })

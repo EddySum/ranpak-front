@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader';
 import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh, Material, BufferAttribute, Vector3, Color, BufferGeometry, PointsMaterial, Points, Float32BufferAttribute } from 'three'
 
@@ -8,6 +8,9 @@ import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial
 export class PointCloudDirective {
   @Input() pcbFile!: File;
   @Input() color?: string;
+  @Input() pointSize?: number | null;
+
+  @Output() pointSizeChange = new EventEmitter<number>();
 
   pcdPoints: Points<BufferGeometry, Material | Material[]> | null = null;
 
@@ -39,12 +42,13 @@ export class PointCloudDirective {
     const buffer = await this.pcbFile.arrayBuffer();
     
     this.pcdPoints = loader.parse(buffer, this.pcbFile.name);
+    this.pointSizeChange.emit(((this.pcdPoints.material as PointsMaterial).size))
     
     
     scene.add(this.pcdPoints);
     
     const animate = () => {
-      this.setColor();
+      this.setParams();
       requestAnimationFrame( animate );
       renderer.render( scene, camera );
     }
@@ -52,13 +56,19 @@ export class PointCloudDirective {
     animate();
   }
 
-  setColor() {
+  setParams() {
     if(!this.pcdPoints) throw Error('PCD points do not exist')
 
     const color = new Color( this.color ?? '#FFF' );
     const material = this.pcdPoints.material as PointsMaterial;
 
-    material.color.set(color)
+    material.setValues({
+      size: this.pointSize ?? material.size,
+      color: color
+    })
+    console.log(material.size)
+    /* material.parmaters()
+    material.color.set(color) */
   }
 
 }
