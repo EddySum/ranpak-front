@@ -1,4 +1,5 @@
 <header>
+  <div class="flex flex-row items-center justify-center md:justify-between">
     <nav *ngIf="!isLoginOrSignup" class="nav-container">
         <div class="nav-container-inner">
           <div>
@@ -13,6 +14,13 @@
           </div>
         </div>
     </nav>
+
+    <div class="hidden md:flex flex-row items-center group cursor-pointer gap-2 px-8">
+      
+      <p class="group-hover:text-blue-500">Logout</p>
+      <i-feather name="log-out" class="w-4 h-4 group-hover:!stroke-blue-500 !stroke-gray-700 cursor-pointer"></i-feather>
+    </div>
+  </div>
 </header>
 
 <main class="h-full">
