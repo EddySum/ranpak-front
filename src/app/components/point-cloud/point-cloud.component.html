@@ -20,5 +20,8 @@
         <input class="invisible" (change)="uploadPcb($event)" type="file" name="file" id="upload-file"/>
     </ng-container>
 
-    <div class="w-full h-64" *ngIf="pcbFile" appPointCloud [pcbFile]="pcbFile"></div>
+    <ng-container *ngIf="pcbFile">
+        <app-point-cloud-viewer [pcbFile]="pcbFile"></app-point-cloud-viewer>
+    </ng-container>
+    
 </div>

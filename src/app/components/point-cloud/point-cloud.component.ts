@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-point-cloud',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PointCloudComponent implements OnInit {
   pcbFile: File | null = null;
+  
+  
+  
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
   async uploadPcb(event: Event) {
@@ -21,4 +24,5 @@ export class PointCloudComponent implements OnInit {
     this.pcbFile = fileList[0];
   }
 
+ 
 }

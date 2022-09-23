@@ -15,6 +15,7 @@ import { IconsModule } from './icons/icons.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { CountryPipe } from './util/pipes/country/country.pipe';
+import { PointCloudViewerComponent } from './components/point-cloud/point-cloud-viewer/point-cloud-viewer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CountryPipe } from './util/pipes/country/country.pipe';
     ErrorComponent,
     ProductCardComponent,
     ProductFormComponent,
-    CountryPipe
+    CountryPipe,
+    PointCloudViewerComponent
   ],
   imports: [
     BrowserModule,
