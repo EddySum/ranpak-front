@@ -26,6 +26,10 @@ export class UserService {
     }, { withCredentials: true });
   }
 
+  logout() {
+    return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true });
+  }
+
 
   getUser() {
     return this.http.get(`${this.apiUrl}`, { withCredentials: true });
