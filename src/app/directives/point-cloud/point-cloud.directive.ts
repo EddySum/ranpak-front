@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { PCDLoader } from 'three/examples/jsm/loaders/PCDLoader';
-import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh } from 'three'
+import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh, BufferAttribute, Vector3, Color, BufferGeometry, PointsMaterial, Points, Float32BufferAttribute } from 'three'
 
 @Directive({
   selector: '[appPointCloud]'
@@ -34,8 +34,14 @@ export class PointCloudDirective {
     
     
     const buffer = await this.pcbFile.arrayBuffer();
-    const points = loader.parse(buffer, this.pcbFile.name)
-    scene.add(points);
+    
+    const pcdPoints = loader.parse(buffer, this.pcbFile.name);
+    const red = new Color( 0xff0000 );
+    const material = pcdPoints.material as PointsMaterial;
+
+    material.color.set(red)
+    
+    scene.add(pcdPoints);
     
     const animate = () => {
       requestAnimationFrame( animate );
